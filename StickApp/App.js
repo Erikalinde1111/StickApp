@@ -8,28 +8,28 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View,
-  TextInput,
-  TouchableHighlight
+  View
 } from 'react-native';
+import firebase from 'firebase';
+import Login from './components/login';
 
 export default class App extends Component{
+
+  componentWillMount() {
+    firebase.initializeApp({
+        apiKey: 'AIzaSyD-KygG67cI5h8JXhcTgMq0bsFQABnRZO0',
+        authDomain: 'stick-app-31320.firebaseapp.com',
+        databaseURL: 'https://stick-app-31320.firebaseio.com',
+        projectId: 'stick-app-31320',
+        storageBucket: 'stick-app-31320.appspot.com',
+        messagingSenderId: '450275542614'
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="användarnamn"
-        />
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="lösenord"
-        />
-        <TouchableHighlight style={styles.button}>
-          <Text>
-            logga in
-          </Text>
-        </TouchableHighlight>
+        <Login />
       </View>
     );
   }
@@ -41,19 +41,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#99FFFF',
-  },
-  inputStyle: {
-    backgroundColor: '#FFFFFF',
-    padding: 10,
-    borderRadius: 5,
-    margin: 10,
-    textAlign: 'center'
-  },
-  button: {
-    backgroundColor: '#FFFFFF',
-    alignSelf: 'flex-end',
-    padding: 10,
-    borderRadius: 5,
-    margin: 10,
   }
 });
