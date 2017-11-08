@@ -6,32 +6,30 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
+  TouchableHighlight
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-export default class App extends Component<{}> {
+export default class App extends Component{
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="användarnamn"
+        />
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="lösenord"
+        />
+        <TouchableHighlight style={styles.button}>
+          <Text>
+            logga in
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -40,18 +38,22 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#99FFFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
+  inputStyle: {
+    backgroundColor: '#FFFFFF',
+    padding: 10,
+    borderRadius: 5,
     margin: 10,
+    textAlign: 'center'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  button: {
+    backgroundColor: '#FFFFFF',
+    alignSelf: 'flex-end',
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
+  }
 });
