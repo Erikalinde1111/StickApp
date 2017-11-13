@@ -8,29 +8,19 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
+  ActivityIndicator
 } from 'react-native';
 import firebase from 'firebase';
-import Login from './components/login';
+import Router from './components/router';
+
+//borde bryta ut denna kod och lägga i egen component
 
 export default class App extends Component{
-
-  componentWillMount() {
-    firebase.initializeApp({
-        apiKey: 'AIzaSyD-KygG67cI5h8JXhcTgMq0bsFQABnRZO0',
-        authDomain: 'stick-app-31320.firebaseapp.com',
-        databaseURL: 'https://stick-app-31320.firebaseio.com',
-        projectId: 'stick-app-31320',
-        storageBucket: 'stick-app-31320.appspot.com',
-        messagingSenderId: '450275542614'
-      });
-  }
-
   render() {
     return (
-      <View style={styles.container}>
-        <Login />
-      </View>
+      <Router />
     );
   }
 }
@@ -41,5 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#99FFFF',
+  },
+  button: {
+    backgroundColor: '#FFFFFF',
+    alignSelf: 'center',
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
   }
 });
