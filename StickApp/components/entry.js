@@ -16,16 +16,11 @@ class Entry extends Component{
 
   state = { loggedIn: null };
 
+
+
   componentWillMount() {
 
-    firebase.initializeApp({
-        apiKey: 'AIzaSyD-KygG67cI5h8JXhcTgMq0bsFQABnRZO0',
-        authDomain: 'stick-app-31320.firebaseapp.com',
-        databaseURL: 'https://stick-app-31320.firebaseio.com',
-        projectId: 'stick-app-31320',
-        storageBucket: 'stick-app-31320.appspot.com',
-        messagingSenderId: '450275542614'
-      });
+    if(firebase.apps.length > 0) {
       const auth = firebase.auth();
       auth.onAuthStateChanged((user) => {
         if(user) {
@@ -35,6 +30,27 @@ class Entry extends Component{
         }
 
       });
+      this.renderContent();
+      
+    } else {
+      firebase.initializeApp({
+          apiKey: 'AIzaSyD-KygG67cI5h8JXhcTgMq0bsFQABnRZO0',
+          authDomain: 'stick-app-31320.firebaseapp.com',
+          databaseURL: 'https://stick-app-31320.firebaseio.com',
+          projectId: 'stick-app-31320',
+          storageBucket: 'stick-app-31320.appspot.com',
+          messagingSenderId: '450275542614'
+        });
+        const auth = firebase.auth();
+        auth.onAuthStateChanged((user) => {
+          if(user) {
+            this.setState({loggedIn: true});
+          }else {
+            this.setState({loggedIn: false});
+          }
+
+        });
+    }
 
   }
 
@@ -42,13 +58,12 @@ class Entry extends Component{
     switch(this.state.loggedIn) {
       case true:
       return(
-      
-      <TouchableHighlight style={styles.button} onPress={() => firebase.auth().signOut()}>
-        <Text>
-          logga ut
-        </Text>
-      </TouchableHighlight>
-    );
+        <TouchableHighlight style={styles.button} onPress={() => firebase.auth().signOut()}>
+          <Text>
+            logga ut
+          </Text>
+        </TouchableHighlight>
+      );
       case false:
         return <Login />;
       default:
