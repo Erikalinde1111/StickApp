@@ -20,7 +20,7 @@ const Designs = () => {
 
   return(
     <View>
-      <Text>Välj typ av design du vill sticka</Text>
+      <Text>Välj typ av design du vill sticka mer</Text>
         <List>
             <FlatList
               data={this.data}
