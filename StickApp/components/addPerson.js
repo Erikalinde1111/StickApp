@@ -3,9 +3,9 @@ import { View, Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
-class createDesign extends Component {
+class addPerson extends Component {
 
-  state = {hip: '', lengthToArmpit: '', axlar: '', armlength: '', totalLength: ''};
+  state = {key: '', hip: '', lengthToArmpit: '', axlar: '', armlength: '', totalLength: ''};
 
   calcPattern() {
     var nrOfStitches = (25 * this.state.hip) / 10;
@@ -13,9 +13,22 @@ class createDesign extends Component {
     Actions.showPattern({stitches: (nrOfStitches), lengthToArmpit: (this.state.lengthToArmpit), lengthOfUpperFront: (lengthOfUpperFront)});
   }
 
+  saveData() {
+    const { currentUser } = firebase.auth();
+    firebase.database().ref(`/users/${currentUser.uid}/persons`)
+      .push({key: this.state.key, hip: this.state.hip, lengthToArmpit: this.state.lengthToArmpit, axlar: this.state.axlar, armlength: this.state.armlength, totalLength: this.state.totalLength})
+  }
+
   render() {
     return(
       <View style={styles.container}>
+        <TextInput
+          autoCorrect={false}
+          style={styles.inputStyle}
+          onChangeText={(key) => this.setState({key})}
+          value={this.state.key}
+          placeholder="Förnamn"
+        />
         <TextInput
           autoCorrect={false}
           style={styles.inputStyle}
@@ -51,9 +64,9 @@ class createDesign extends Component {
           value={this.state.totalLength}
           placeholder="total längd från höft till axlar"
         />
-        <TouchableHighlight style={styles.button} onPress={this.calcPattern.bind(this)}>
+        <TouchableHighlight style={styles.button} onPress={this.saveData.bind(this)}>
           <Text>
-            skapa mönster
+            Lägg till person
           </Text>
         </TouchableHighlight>
       </View>
@@ -84,4 +97,4 @@ const styles = {
   }
 };
 
-export default createDesign;
+export default addPerson;
