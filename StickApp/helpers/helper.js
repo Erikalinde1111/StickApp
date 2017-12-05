@@ -10,6 +10,10 @@ export function hello(x) {
   calc();
 }
 
+export function patternType(y) {
+  console.log(y);
+}
+
 function calc() {
   console.log("personen "+person.hip);
 }

@@ -3,50 +3,65 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   FlatList,
   TouchableHighlight
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
+import { patternType } from '../helpers/helper';
 
 const Designs = () => {
 
   data=[
-      {key: 1, title: 'kortärmad', body: '1.0', avatar_url: (require('../pic/banan-.jpg'))},
-      {key: 2, title: 'halvlång', body: '0.5', avatar_url: (require('../pic/banan-.jpg'))},
-      {key: 3, title: 'helång', body: '0.25', avatar_url: (require('../pic/banan-.jpg'))}
+      {key: 1, title: 'kortärmad', body: '1.0', url: (require('../pic/banan-.jpg'))},
+      {key: 2, title: 'halvlång', body: '0.5', url: (require('../pic/banan-.jpg'))},
+      {key: 3, title: 'helång', body: '0.25', url: (require('../pic/banan-.jpg'))}
   ];
 
 
 
   return(
-    <View>
-      <Text>Välj typ av design du vill sticka mer</Text>
-        <List>
-            <FlatList
-              data={this.data}
-              renderItem={({item}) => (
-                <ListItem
-                  containerStyle={{margin: 30, backgroundColor: 'pink', padding: 10}}
-                  avatarStyle={{ width: 50, height: 50}}
-                  onPress={() => console.log(item.body)}
-                  title={item.title}
-                  avatar={item.avatar_url}
-                />
-              )}
-            />
-        </List>
+    <View style={{flex: 1, backgroundColor: 'pink', flexDirection: 'column', justifyContent: 'space-around' }}>
+        {this.data.map((designType) => {
+          return (
+            <View key={designType.key} style={styles.container}>
+              <Image source={designType.url} style={styles.image} />
+              <Text style={styles.text}>{designType.title}</Text>
+              <Icon
+                onPress={() => onPressed(designType)}
+                name='chevron-right'
+                type='octicon'
+                size={40}
+                color='#00aced' />
+            </View>
+          );
+        })}
     </View>
   );
 };
 
-
+function onPressed(designType) {
+  patternType(designType)
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: 'row',
     backgroundColor: '#99FFFF',
+    justifyContent: 'space-between',
+    margin: 30,
+    padding: 30
+  },
+  text: {
+    alignSelf: 'flex-end',
+    fontSize: 20,
+    textAlign: 'center',
+    textAlignVertical: 'center'
+  },
+  image: {
+    height: 80,
+    width: 80
   }
 });
 
