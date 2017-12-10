@@ -1,6 +1,7 @@
 // för att få rätt stickfasthet för en provlapp på 10 x 10 cm
 //skall antalet masker vara 25 och antalet rader vara 30
 //2.5 maskor per cm
+import { Actions } from 'react-native-router-flux';
 const stitchesRowGauge = 25;
 const rowsGauge = 30;
 var person = {};
@@ -18,6 +19,11 @@ export function patternType(y) {
   pattern = y;
 }
 
+export function pattern() {
+  console.log("Kollar");
+  Actions.showPattern({stitches: (nrOfStitches)});
+}
+
 function calcFront() {
   nrOfStitches = Math.round( ((person.hip)/10)* stitchesRowGauge)
   lengthToShoulder = person.totalLength - person.lengthToArmpit
@@ -32,6 +38,8 @@ function calcFront() {
   console.log("Gör spegelvänt på andra axeln");
   console.log("Du har nu stickat framstycket");
 }
+
+
 
 //Hur skall dtta visas upp i vyn förslag är att en ritning på framstycket visas först eftersom det är det som räknas ut först av calcFront
 

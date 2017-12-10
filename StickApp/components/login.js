@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     margin: 10,
+    height: 50,
+    fontSize: 25,
     textAlign: 'center'
   },
   button: {

@@ -10,16 +10,16 @@ import {
 import { List, ListItem } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import { patternType } from '../helpers/helper';
+import { pattern } from '../helpers/helper';
+import { Actions } from 'react-native-router-flux';
 
-const Designs = () => {
+const Designs = (props) => {
 
   data=[
       {key: 1, title: 'kortärmad', body: '1.0', url: (require('../pic/banan-.jpg'))},
       {key: 2, title: 'halvlång', body: '0.5', url: (require('../pic/banan-.jpg'))},
       {key: 3, title: 'helång', body: '0.25', url: (require('../pic/banan-.jpg'))}
   ];
-
-
 
   return(
     <View style={{flex: 1, backgroundColor: 'pink', flexDirection: 'column', justifyContent: 'space-around' }}>
@@ -42,7 +42,8 @@ const Designs = () => {
 };
 
 function onPressed(designType) {
-  patternType(designType)
+  pattern();
+  patternType(designType);
 };
 
 const styles = StyleSheet.create({
