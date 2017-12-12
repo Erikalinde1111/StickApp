@@ -13,10 +13,51 @@ class addPerson extends Component {
     Actions.showPattern({stitches: (nrOfStitches), lengthToArmpit: (this.state.lengthToArmpit), lengthOfUpperFront: (lengthOfUpperFront)});
   }
 
+  //kolla igenom varje state innan du sparar till firebase
   saveData() {
-    const { currentUser } = firebase.auth();
-    firebase.database().ref(`/users/${currentUser.uid}/persons`)
-      .push({key: this.state.key, hip: this.state.hip, lengthToArmpit: this.state.lengthToArmpit, axlar: this.state.axlar, armlength: this.state.armlength, totalLength: this.state.totalLength})
+    var hip = this.state.hip
+    var key = this.state.key
+    var lengthToArmpit = this.state.lengthToArmpit
+    var axlar = this.state.axlar
+    var armlength = this.state.armlength
+    var totalLength = this.state.totalLength
+
+    var lista = [key, hip, lengthToArmpit, axlar, armlength, totalLength];
+    var val = [];
+    for(i = 0; i < lista.length; i++) {
+        //console.log(this.validateNumberInput(lista[i]));
+        val.push(this.validateNumberInput(lista[i]));
+    }
+    var nrFalse = 0
+    console.log(val);
+    for(i = 0; i < val.length; i++) {
+      if(!(val[i])) {
+        nrFalse++
+      }
+    }
+    console.log(nrFalse);
+    if(nrFalse == 0) {
+      const { currentUser } = firebase.auth();
+        firebase.database().ref(`/users/${currentUser.uid}/persons`)
+          .push({key: this.state.key, hip: this.state.hip, lengthToArmpit: this.state.lengthToArmpit, axlar: this.state.axlar, armlength: this.state.armlength, totalLength: this.state.totalLength})
+    }
+  }
+
+
+  validateNumberInput(text) {
+    if(text.length == 0) {
+      return false;
+    }else{
+      if(text.match(/^[0-9]{2,3}$/)){
+        return true;
+      }else{
+        if(text.match(/^[A-Z,a-z]{2,11}$/)) {
+          return true;
+        }else{
+          return false;
+        }
+      }
+    }
   }
 
   render() {
@@ -32,6 +73,7 @@ class addPerson extends Component {
         <TextInput
           autoCorrect={false}
           style={styles.inputStyle}
+          maxLength={3}
           onChangeText={(hip) => this.setState({hip})}
           value={this.state.hip}
           placeholder="höft cm"
