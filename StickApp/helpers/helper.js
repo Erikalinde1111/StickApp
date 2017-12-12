@@ -9,18 +9,18 @@ var pattern = {};
 var nrOfStitches = 0;
 var lengthToShoulder = 0;
 var nrOfStShoulders = 0;
+
 //skall sätta person objectet
-export function hello(x) {
-  person = x;
+export const choosePerson = (chosenPerson) => {
+  person = chosenPerson;
   calcFront();
 }
 
-export function patternType(y) {
-  pattern = y;
+export const patternType = (chosenPattern) => {
+  pattern = chosenPattern;
 }
 
-export function pattern() {
-  console.log("Kollar");
+export const goToPattern = () => {
   Actions.showPattern({stitches: (nrOfStitches)});
 }
 

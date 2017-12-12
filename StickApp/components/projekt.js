@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
-import {hello} from '../helpers/helper';
+import {choosePerson} from '../helpers/helper';
 
 export default class Projekt extends Component{
 
@@ -34,7 +34,7 @@ export default class Projekt extends Component{
   }
 
   onPressed(x) {
-    hello(x)
+    choosePerson(x)
     Actions.designs();
   }
 
