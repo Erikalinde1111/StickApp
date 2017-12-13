@@ -5,6 +5,8 @@ import Projekt from './projekt';
 import AddPerson from './addPerson';
 import ShowPattern from './showPattern';
 import Designs from './designs';
+import firebase from 'firebase';
+
 
 const roterComponent = () => {
   return(
@@ -23,7 +25,13 @@ const roterComponent = () => {
             title="PROJEKT" />
 
           <Scene key="addPerson" title="NY PERSON" component={AddPerson}/>
-          <Scene key="showPattern" title="INSTRUKTIONER" component={ShowPattern}/>
+
+          <Scene key="showPattern"
+            title="INSTRUKTIONER"
+            onRight={() => firebase.auth().signOut().then( () => Actions.auth())}
+            rightTitle="Logga ut"
+            component={ShowPattern}/>
+
           <Scene key="designs" title="DESIGNS" component={Designs}/>
         </Scene>
 

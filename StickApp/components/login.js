@@ -57,8 +57,8 @@ class Login extends Component{
 
     return(
       <TouchableHighlight style={styles.button} onPress={this.buttonPressed.bind(this)}>
-        <Text>
-          logga in
+        <Text style={styles.text}>
+          LOGGA IN
         </Text>
       </TouchableHighlight>
     )
@@ -98,12 +98,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#99FFFF',
+    backgroundColor: '#E8E8E8',
   },
   inputStyle: {
     backgroundColor: '#FFFFFF',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
     margin: 10,
     height: 50,
     fontSize: 25,
@@ -113,8 +115,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     alignSelf: 'flex-end',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
     margin: 10,
+  },
+  text: {
+    fontSize: 15,
   }
 });
 

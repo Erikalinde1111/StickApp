@@ -31,7 +31,7 @@ class Entry extends Component{
 
       });
       this.renderContent();
-      
+
     } else {
       firebase.initializeApp({
           apiKey: 'AIzaSyD-KygG67cI5h8JXhcTgMq0bsFQABnRZO0',
@@ -58,11 +58,7 @@ class Entry extends Component{
     switch(this.state.loggedIn) {
       case true:
       return(
-        <TouchableHighlight style={styles.button} onPress={() => firebase.auth().signOut()}>
-          <Text>
-            logga ut
-          </Text>
-        </TouchableHighlight>
+        Actions.main()
       );
       case false:
         return <Login />;
@@ -88,10 +84,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#99FFFF',
+    backgroundColor: '#E8E8E8',
   },
   button: {
     backgroundColor: '#FFFFFF',
+    borderColor: 'black',
+    borderWidth: 2,
     alignSelf: 'center',
     padding: 10,
     borderRadius: 5,

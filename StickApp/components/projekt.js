@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
   FlatList
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -33,56 +32,47 @@ export default class Projekt extends Component{
     console.log(this.state.personer);
   }
 
-  onPressed(x) {
-    choosePerson(x)
+  onPressed(person) {
+    choosePerson(person)
     Actions.designs();
   }
 
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: 'blue'}}>
-        <View style={styles.container}>
-          <Text>Vem vill du sticka åt</Text>
+      <View style={styles.container}>
+          <Text style={styles.header}>VÄLJ PERSON I LISTAN</Text>
           <FlatList
             style={styles.list}
             data={this.state.personer}
-            renderItem={({item}) => <Text onPress={() => this.onPressed(item)}>{item.key}</Text>}
+            renderItem={({item}) => <Text style={styles.text} onPress={() => this.onPressed(item)}>{item.key}</Text>}
           />
-        </View>
-        <TouchableHighlight style={styles.button} onPress={this.buttonPressed.bind(this)}>
-          <Text>
-            log out
-          </Text>
-        </TouchableHighlight>
       </View>
     );
   }
 
-  //gör en funktion som loggar ut usern och som router till Actions.auth()
-  buttonPressed() {
-    firebase.auth().signOut().then( () => Actions.auth());
-  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    backgroundColor: '#E8E8E8',
+    margin: 10,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: 'red',
-  },
-  button: {
-    backgroundColor: '#FFFFFF',
-    alignSelf: 'flex-end',
-    justifyContent: 'flex-end',
-    padding: 10,
-    borderRadius: 5,
-    margin: 10,
+    alignItems: 'center'
   },
   list: {
-    alignSelf: 'center',
     padding: 10,
-    margin: 10,
-    backgroundColor: '#FFFFFF'
+    margin: 10
+  },
+  text: {
+    fontSize: 20
+  },
+  header: {
+    fontSize: 30,
+    margin: 10
   }
 });

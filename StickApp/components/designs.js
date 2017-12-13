@@ -21,9 +21,9 @@ class Designs extends React.Component {
   }
 
   data=[
-     {key: 1, title: 'kortärmad', body: '1.0', url: (require('../pic/banan-.jpg'))},
-     {key: 2, title: 'halvlång', body: '0.5', url: (require('../pic/banan-.jpg'))},
-     {key: 3, title: 'helång', body: '0.25', url: (require('../pic/banan-.jpg'))}
+     {key: 1, title: 'KORTÄRMAD', body: '1.0', url: (require('../pic/kortarmad2.png'))},
+     {key: 2, title: 'HALVLÅNG', body: '0.5', url: (require('../pic/halvlang.png'))},
+     {key: 3, title: 'HELLÅNG', body: '0.25', url: (require('../pic/langarmad.png'))}
  ];
 
 
@@ -34,7 +34,7 @@ class Designs extends React.Component {
 
   render() {
     return(
-      <View style={{flex: 1, backgroundColor: 'pink', flexDirection: 'column', justifyContent: 'space-around' }}>
+      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-around' }}>
         {this.data.map((designType) => {
           return (
             <View key={designType.key} style={styles.container}>
@@ -58,10 +58,12 @@ class Designs extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#99FFFF',
     justifyContent: 'space-between',
-    margin: 30,
-    padding: 30
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    margin: 10,
+    padding: 20
   },
   text: {
     alignSelf: 'flex-end',
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 80,
-    width: 80
+    width: 120
   }
 });
 

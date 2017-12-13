@@ -25,8 +25,7 @@ class addPerson extends Component {
     var lista = [key, hip, lengthToArmpit, axlar, armlength, totalLength];
     var val = [];
     for(i = 0; i < lista.length; i++) {
-        //console.log(this.validateNumberInput(lista[i]));
-        val.push(this.validateNumberInput(lista[i]));
+        val.push(this.validateInput(lista[i]));
     }
     var nrFalse = 0
     console.log(val);
@@ -39,19 +38,27 @@ class addPerson extends Component {
     if(nrFalse == 0) {
       const { currentUser } = firebase.auth();
         firebase.database().ref(`/users/${currentUser.uid}/persons`)
-          .push({key: this.state.key, hip: this.state.hip, lengthToArmpit: this.state.lengthToArmpit, axlar: this.state.axlar, armlength: this.state.armlength, totalLength: this.state.totalLength})
+          .push({
+            key: this.state.key,
+            hip: this.state.hip,
+            lengthToArmpit: this.state.lengthToArmpit,
+            axlar: this.state.axlar,
+            armlength: this.state.armlength,
+            totalLength: this.state.totalLength
+          });
+      Actions.main();
     }
   }
 
 
-  validateNumberInput(text) {
+  validateInput(text) {
     if(text.length == 0) {
       return false;
     }else{
       if(text.match(/^[0-9]{2,3}$/)){
         return true;
       }else{
-        if(text.match(/^[A-Z,a-z]{2,11}$/)) {
+        if(text.match(/^[A-Z,a-z,Å,å,Ä,ä,Ö,ö]{2,11}$/)) {
           return true;
         }else{
           return false;
@@ -107,8 +114,8 @@ class addPerson extends Component {
           placeholder="total längd från höft till axlar"
         />
         <TouchableHighlight style={styles.button} onPress={this.saveData.bind(this)}>
-          <Text>
-            Lägg till person
+          <Text style={styles.text}>
+            LÄGG TILL PERSON
           </Text>
         </TouchableHighlight>
       </View>
@@ -121,21 +128,31 @@ const styles = {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#99FFFF',
+    backgroundColor: '#E8E8E8',
+
   },
   inputStyle: {
     backgroundColor: '#FFFFFF',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
     margin: 10,
+    height: 50,
+    fontSize: 25,
     textAlign: 'center'
   },
   button: {
     backgroundColor: '#FFFFFF',
     alignSelf: 'flex-end',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
     margin: 10,
+  },
+  text: {
+    fontSize: 15,
   }
 };
 

@@ -17,26 +17,26 @@ const ShowPattern = (props) => {
   return(
     <View style={styles.container}>
       <Button
-        onPress={() => Alert.alert("hej")}
+        onPress={() => Alert.alert(props.steg4)}
         title="Steg 4"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
       <Image source={require('../pic/framstycke2.png')} style={{width: 350, zIndex: -1, position: 'absolute'}}/>
       <Button
-        onPress={() => Alert.alert("hej")}
+        onPress={() => Alert.alert(props.steg3)}
         title="Steg 3"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
       <Button
-        onPress={() => Alert.alert("hej")}
+        onPress={() => Alert.alert(props.steg2)}
         title="Steg 2"
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
       <Button
-        onPress={() => Alert.alert("Lägg upp antalet maskor: "+props.stitches)}
+        onPress={() => Alert.alert(props.steg1)}
         title="Steg 1"
         color="#841584"
         backgroundColor='#DDDDDD'
