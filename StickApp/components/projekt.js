@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   text: {
-    fontSize: 20
+    fontSize: 30
   },
   header: {
     fontSize: 30,

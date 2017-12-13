@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
     margin: 10,
-    padding: 20
+    padding: 20,
+    backgroundColor: '#585858'
   },
   text: {
     alignSelf: 'flex-end',
